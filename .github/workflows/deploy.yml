@@ -29,6 +29,16 @@ jobs:
       - name: Build app
         run: npm run build
 
+      - name: Prepare static output
+        run: |
+          rm -rf out
+          mkdir -p out
+          cp .next/server/app/index.html out/
+          cp .next/server/pages/404.html out/404.html
+          cp -R public/* out/
+          mkdir -p out/_next/static
+          cp -R .next/static/* out/_next/static/
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

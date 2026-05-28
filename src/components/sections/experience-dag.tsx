@@ -65,7 +65,6 @@ export function ExperienceDag() {
                     <div className="flex items-start justify-between gap-3 p-4 sm:p-5">
                       <div>
                         <h3 className="text-lg font-semibold text-zinc-50">{n.company}</h3>
-                        <p className="text-sm text-zinc-400">{n.title}</p>
                         <p className="mt-1 text-xs text-violet-400/80">{n.role}</p>
                         <p className="mt-2 font-mono text-xs text-zinc-500">
                           {n.period} · {n.location}
@@ -90,8 +89,6 @@ export function ExperienceDag() {
                         >
                           <div className="space-y-5 p-4 pt-0 sm:p-5 sm:pt-0">
                             <p className="pt-4 text-sm text-violet-200/90">{n.impact}</p>
-
-                            <ExperienceVisual companyId={n.id} />
 
                             <div>
                               <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-zinc-500">
@@ -143,83 +140,3 @@ export function ExperienceDag() {
   );
 }
 
-function ExperienceVisual({ companyId }: { companyId: ExperienceId }) {
-  if (companyId === "tiger") {
-    const stages = ["Azure Blob", "Snowflake", "dbt", "Airflow"];
-    const highlights = ["Incremental pipelines", "SCD Type 2", "Cost optimization", "Test checks"];
-
-    return (
-      <div className="rounded-lg border border-zinc-800 bg-zinc-950/40 p-4">
-        <p className="mb-3 font-mono text-[10px] uppercase tracking-wider text-zinc-500">
-          Architecture snapshot
-        </p>
-        <div className="flex flex-col gap-2 md:flex-row md:items-center">
-          {stages.map((stage, index) => (
-            <div key={stage} className="flex items-center gap-2">
-              <span className="rounded-md border border-zinc-700 bg-zinc-900 px-2 py-1 text-xs text-zinc-200">
-                {stage}
-              </span>
-              {index < stages.length - 1 && <FlowConnector className="h-6 w-10" />}
-            </div>
-          ))}
-        </div>
-        <div className="mt-3 grid gap-2 sm:grid-cols-2">
-          {highlights.map((item) => (
-            <span
-              key={item}
-              className="rounded border border-cyan-900/50 bg-cyan-950/20 px-2 py-1 text-xs text-cyan-200/90"
-            >
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (companyId === "zenarate") {
-    return (
-      <div className="rounded-lg border border-zinc-800 bg-zinc-950/40 p-4">
-        <p className="mb-3 font-mono text-[10px] uppercase tracking-wider text-zinc-500">
-          Workflow snapshot
-        </p>
-        <div className="grid gap-3 sm:grid-cols-3">
-          <div className="rounded-md border border-zinc-700 bg-zinc-900/60 p-3">
-            <p className="font-mono text-[10px] text-zinc-500">Step 1</p>
-            <p className="mt-1 text-xs text-zinc-200">SQL + Python workflows</p>
-          </div>
-          <div className="rounded-md border border-zinc-700 bg-zinc-900/60 p-3">
-            <p className="font-mono text-[10px] text-zinc-500">Step 2</p>
-            <p className="mt-1 text-xs text-zinc-200">Validation pipelines</p>
-          </div>
-          <div className="rounded-md border border-zinc-700 bg-zinc-900/60 p-3">
-            <p className="font-mono text-[10px] text-zinc-500">Step 3</p>
-            <p className="mt-1 text-xs text-zinc-200">Debugging flow + fixes</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="rounded-lg border border-zinc-800 bg-zinc-950/40 p-4">
-      <p className="mb-3 font-mono text-[10px] uppercase tracking-wider text-zinc-500">
-        Transformation snapshot
-      </p>
-      <div className="grid gap-3 sm:grid-cols-3">
-        <div className="rounded-md border border-zinc-700 bg-zinc-900/60 p-3">
-          <p className="font-mono text-[10px] text-zinc-500">dbt</p>
-          <p className="mt-1 text-xs text-zinc-200">Transformations</p>
-        </div>
-        <div className="rounded-md border border-zinc-700 bg-zinc-900/60 p-3">
-          <p className="font-mono text-[10px] text-zinc-500">Macros</p>
-          <p className="mt-1 text-xs text-zinc-200">Reusable SQL logic</p>
-        </div>
-        <div className="rounded-md border border-zinc-700 bg-zinc-900/60 p-3">
-          <p className="font-mono text-[10px] text-zinc-500">Modeling</p>
-          <p className="mt-1 text-xs text-zinc-200">Facts and dimensions</p>
-        </div>
-      </div>
-    </div>
-  );
-}

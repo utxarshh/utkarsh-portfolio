@@ -23,7 +23,7 @@ export function AboutSection() {
               </h2>
             </div>
             <div className="rounded-lg border border-dashed border-zinc-700 bg-zinc-950/50 px-3 py-2 font-mono text-[10px] text-zinc-500">
-              data engineer · snowflake · azure
+              data engineer · snowflake · dbt · agentic ai
             </div>
           </header>
 

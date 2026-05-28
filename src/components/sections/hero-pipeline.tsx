@@ -54,9 +54,6 @@ export function HeroPipeline() {
           transition={{ duration: 0.5 }}
           className="mb-10 max-w-2xl"
         >
-          <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-cyan-500/90">
-            Production Data Engineering Portfolio
-          </p>
           <h1 className="text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
             {profile.name}
           </h1>

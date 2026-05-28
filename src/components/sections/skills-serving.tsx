@@ -39,7 +39,21 @@ export function SkillsServing() {
             </div>
           </div>
 
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <div className="rounded-xl border border-zinc-800 bg-zinc-950/30 p-4">
+              <p className="font-mono text-[10px] uppercase tracking-wider text-zinc-500">AI Skills</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {skillStack.ai.map((skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-md border border-violet-700/40 bg-violet-950/30 px-2.5 py-1 text-sm text-violet-100"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
             <div className="rounded-xl border border-zinc-800 bg-zinc-950/30 p-4">
               <p className="font-mono text-[10px] uppercase tracking-wider text-zinc-500">Secondary Tools</p>
               <div className="mt-3 flex flex-wrap gap-2">

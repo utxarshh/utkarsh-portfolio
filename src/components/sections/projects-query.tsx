@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
 import { FlowConnector } from "@/components/pipeline/flow-connector";
 import { projects, type ProjectRow } from "@/lib/data";
 import { cn } from "@/lib/utils";
@@ -83,6 +84,27 @@ export function ProjectsQuery() {
                         ))}
                       </ul>
                     </div>
+                    {activeProject.links && activeProject.links.length > 0 && (
+                      <div>
+                        <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-zinc-500">
+                          Links
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {activeProject.links.map((link) => (
+                            <a
+                              key={link.href}
+                              href={link.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-950/20 px-3 py-1.5 text-xs font-medium text-cyan-200 transition-colors hover:border-cyan-400/50 hover:bg-cyan-950/40"
+                            >
+                              <ExternalLink className="h-3 w-3" />
+                              {link.label}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                     <div>
                       <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-zinc-500">
                         Tools
@@ -110,6 +132,23 @@ export function ProjectsQuery() {
 }
 
 function SystemVisual({ project }: { project: ProjectRow }) {
+  if (project.id === "agentic_dbt_librarian") {
+    return (
+      <div className="rounded-lg border border-zinc-800 bg-black/20 p-4">
+        <p className="mb-3 font-mono text-[10px] uppercase tracking-wider text-zinc-500">Git Push → Webhook → AI → Pull Request</p>
+        <div className="flex flex-col gap-2 md:flex-row md:items-center">
+          <StageBlock label="GitHub Webhook" subtitle="Push event trigger" tone="border-zinc-600/40 bg-zinc-900/30" />
+          <FlowConnector className="h-6 w-12" />
+          <StageBlock label="n8n Orchestration" subtitle="SQL + manifest fetch" tone="border-cyan-700/40 bg-cyan-950/20" />
+          <FlowConnector className="h-6 w-12" />
+          <StageBlock label="Gemini AI" subtitle="Impact Prompting" tone="border-violet-700/40 bg-violet-950/20" />
+          <FlowConnector className="h-6 w-12" />
+          <StageBlock label="GitHub PR" subtitle="Auto-created branch" tone="border-emerald-700/40 bg-emerald-950/20" />
+        </div>
+      </div>
+    );
+  }
+
   if (project.id === "medallion") {
     return (
       <div className="rounded-lg border border-zinc-800 bg-black/20 p-4">
